@@ -69,13 +69,19 @@
         <h5>${i+1}. ${triviaQuestions[i].question}</h5>
         <p>
           <label>
-            <input name="group1" type="radio"/>
+            <input name="group${i+1}" type="radio"/>
             <span>${triviaQuestions[i].choiceA}</span>
-            <input name="group1" type="radio"/>
+          </label>
+          <label>
+            <input name="group${i + 1}" type="radio"/>
             <span>${triviaQuestions[i].choiceB}</span>
-            <input name="group1" type="radio"/>
+          </label>
+          <label>
+            <input name="group${i + 1}" type="radio"/>
             <span>${triviaQuestions[i].choiceC}</span>
-            <input name="group1" type="radio"/>
+          </label>
+            <label>
+            <input name="group${i + 1}" type="radio"/>
             <span>${triviaQuestions[i].choiceD}</span>
           </label>
         </p>
