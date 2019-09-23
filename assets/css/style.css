@@ -1,0 +1,13 @@
+.container{
+background-color: cadetblue;
+text-align: center
+}
+
+.trivia{
+  font-size: 30pt;
+  text-align: center;
+}
+
+#startButton{
+padding-top: 100px;
+}
