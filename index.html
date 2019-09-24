@@ -17,7 +17,7 @@
       <div class="col s12">
         <span class="trivia">Totally Trivial Trivia</span>
       </div>
-      <div class="row" id="startButton">
+      <div class="row" id="startButton" style="margin-bottom: 0px; padding-top: 80px">
         <a class="waves-effect waves-light btn" id='starts'>Start</a>
       </div>
     </div>
@@ -34,6 +34,8 @@
     const renderGame = function () {
       //remove start button
       document.getElementById('startButton').innerHTML = ''
+      document.getElementById('startButton').style.paddingTop = "0px"
+
       for (let i = 0; i < 3; i++) {
         // const random = Math.floor(Math.random() * 20 + 1)
         let putQuestion = document.createElement('div')
@@ -43,19 +45,19 @@
         <h5>${i + 1}. ${triviaQuestions[i].question}</h5>
         <p>
           <label>
-            <input name="group${i + 1}" type="radio" id="choiceA${i + 1}" unchecked/>
+            <input name="group${i + 1}" type="radio" value = '1' id="choiceA${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceA}</span>
           </label>
           <label>
-            <input name="group${i + 1}" type="radio" id="choiceB${i + 1}" unchecked/>
+            <input name="group${i + 1}" type="radio" value = '1' id="choiceB${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceB}</span>
           </label>
           <label>
-            <input name="group${i + 1}" type="radio" id="choiceC${i + 1}" unchecked/>
+            <input name="group${i + 1}" type="radio" value = '1' id="choiceC${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceC}</span>
           </label>
             <label>
-            <input name="group${i + 1}" type="radio" id="choiceD${i + 1}" unchecked/>
+            <input name="group${i + 1}" type="radio" value = '1' id="choiceD${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceD}</span>
           </label>
         </p>
@@ -78,8 +80,20 @@
     }
 
     const finishGame = function () {
-      document.getElementById('questions').innerHTML= ''
-      document.getElementById('doneButton').innerHTML=''
+      document.getElementById('questions').innerHTML = ''
+      document.getElementById('doneButton').innerHTML = ''
+      let finalScreen = document.createElement('div')
+      finalScreen.className = 'row'
+      finalScreen.innerHTML = `
+      <div class="row" id="score">
+      <h5>All Done!</h5>
+      <p>Correct Answers: ${correct} </p>
+      <p>Incorrect Answers: ${incorrect} </p>
+      <p>Unanswered: ${remaining} </p>
+      </div>
+      `
+      document.getElementById('questions').append(finalScreen)
+
     }
 
     document.addEventListener('click', (event) => {
@@ -87,17 +101,16 @@
         renderGame()
       }
     })
-    
+
     document.addEventListener('click', (event) => {
       if (event.target.id === 'done') {
+        if (document.getElementById('choiceC1').checked === true) {
+          console.log('correct')
+        } else {
+          console.log('false')
+        }
+
         finishGame()
-        // if(document.getElementById('choiceC1').checked === true){
-        //   console.log('correct')
-        // } else {
-        //   console.log('false')
-        // }
-    
-        console.log(document.getElementById(`choiceC1`).checked)
       }
     })
 

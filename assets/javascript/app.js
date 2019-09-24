@@ -24,3 +24,7 @@ let triviaQuestions = [
     answer: 'b'
   }
 ]
+
+let correct = 0
+let incorrect = 0
+let remaining = 0

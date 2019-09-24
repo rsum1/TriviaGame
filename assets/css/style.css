@@ -8,6 +8,11 @@ text-align: center
   text-align: center;
 }
 
+.section{
+  padding-top: 0px;
+  padding-bottom: 0px
+}
 #startButton{
 padding-top: 100px;
 }
+
