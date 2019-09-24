@@ -18,45 +18,19 @@
         <span class="trivia">Totally Trivial Trivia</span>
       </div>
       <div class="row" id="startButton">
-        <a class="waves-effect waves-light btn" id='starts'>button</a>
+        <a class="waves-effect waves-light btn" id='starts'>Start</a>
       </div>
     </div>
     <div class="row" id="questions"></div>
+    <div class="row" id="doneButton"></div>
   </div>
-
-
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./assets/javascript/app.js"></script>
 
   <script>
 
-  let triviaQuestions = [
-    {
-      question: 'the answer is c',
-      choiceA: 'this is choice a',
-      choiceB: 'this is choice b',
-      choiceC: 'this is choice c',
-      choiceD: 'this is choice d',
-      answer: 'c'
-    }, 
-    {
-      question: 'the answer is d',
-      choiceA: 'this is choice a',
-      choiceB: 'this is choice b',
-      choiceC: 'this is choice c',
-      choiceD: 'this is choice d',
-      answer: 'd'
-    }, 
-    {
-      question: 'the answer is b',
-      choiceA: 'this is choice a',
-      choiceB: 'this is choice b',
-      choiceC: 'this is choice c',
-      choiceD: 'this is choice d',
-      answer: 'b'
-    }
-  ]
     const renderGame = function () {
       //remove start button
       document.getElementById('startButton').innerHTML = ''
@@ -66,22 +40,22 @@
         putQuestion.className = 'row'
         putQuestion.innerHTML = `
         <div class="section">
-        <h5>${i+1}. ${triviaQuestions[i].question}</h5>
+        <h5>${i + 1}. ${triviaQuestions[i].question}</h5>
         <p>
           <label>
-            <input name="group${i+1}" type="radio"/>
+            <input name="group${i + 1}" type="radio" id="choiceA${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceA}</span>
           </label>
           <label>
-            <input name="group${i + 1}" type="radio"/>
+            <input name="group${i + 1}" type="radio" id="choiceB${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceB}</span>
           </label>
           <label>
-            <input name="group${i + 1}" type="radio"/>
+            <input name="group${i + 1}" type="radio" id="choiceC${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceC}</span>
           </label>
             <label>
-            <input name="group${i + 1}" type="radio"/>
+            <input name="group${i + 1}" type="radio" id="choiceD${i + 1}" unchecked/>
             <span>${triviaQuestions[i].choiceD}</span>
           </label>
         </p>
@@ -89,14 +63,44 @@
         `
         document.getElementById('questions').append(putQuestion)
       }
+
+      //add done button at end of question list
+
+      let putDone = document.createElement('div')
+      putDone.className = 'row'
+      putDone.innerHTML = `
+        <div class="row" id="doneButton">
+          <a class="waves-effect waves-light btn" id='done'>Done</a>
+        </div>
+      `
+      document.getElementById('doneButton').append(putDone)
+
+    }
+
+    const finishGame = function () {
+      document.getElementById('questions').innerHTML= ''
+      document.getElementById('doneButton').innerHTML=''
     }
 
     document.addEventListener('click', (event) => {
       if (event.target.id === 'starts') {
         renderGame()
       }
-
     })
+    
+    document.addEventListener('click', (event) => {
+      if (event.target.id === 'done') {
+        finishGame()
+        // if(document.getElementById('choiceC1').checked === true){
+        //   console.log('correct')
+        // } else {
+        //   console.log('false')
+        // }
+    
+        console.log(document.getElementById(`choiceC1`).checked)
+      }
+    })
+
   </script>
 
 </body>
