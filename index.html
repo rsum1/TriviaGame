@@ -85,16 +85,17 @@
       `
       document.getElementById('doneButton').append(putDone)
 
-      let triviaTimer = 30
+      let triviaTimer = 10
       document.getElementById('startButton').innerHTML = `Time Remaining: ${triviaTimer}`
       const x = setInterval(function () {
         triviaTimer--
         document.getElementById('startButton').innerHTML = `Time Remaining: ${triviaTimer}`
-        if (triviaTimer <=0){
+        if (triviaTimer <= 0) {
           clearInterval(x)
+          checkAnswers()
+          finishGame()
         }
-      },
-        1000)
+      }, 1000)
     }
 
     const finishGame = function () {
@@ -114,6 +115,29 @@
 
     }
 
+    const checkAnswers = function () {
+      if (document.getElementById('choiceC1').checked === true) {
+        correct++
+      } else if (document.getElementById('choiceA1').checked === true || document.getElementById('choiceB1').checked === true || document.getElementById('choiceD1').checked === true) {
+        incorrect++
+      } else {
+        remaining++
+      }
+      if (document.getElementById('choiceD2').checked === true) {
+        correct++
+      } else if (document.getElementById('choiceA2').checked === true || document.getElementById('choiceB2').checked === true || document.getElementById('choiceC2').checked === true) {
+        incorrect++
+      } else {
+        remaining++
+      }
+      if (document.getElementById('choiceB3').checked === true) {
+        correct++
+      } else if (document.getElementById('choiceA3').checked === true || document.getElementById('choiceC3').checked === true || document.getElementById('choiceD3').checked === true) {
+        incorrect++
+      } else {
+        remaining++
+      }
+    }
     document.addEventListener('click', (event) => {
       if (event.target.id === 'starts') {
         renderGame()
@@ -122,15 +146,12 @@
 
     document.addEventListener('click', (event) => {
       if (event.target.id === 'done') {
-        if (document.getElementById('choiceC1').checked === true) {
-          console.log('correct')
-        } else {
-          console.log('false')
-        }
-
+        checkAnswers()
         finishGame()
       }
-    })
+
+    }
+    )
 
   </script>
 
