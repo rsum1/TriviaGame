@@ -31,6 +31,14 @@
 
   <script>
 
+    // const x = setInterval(function(){
+    //   var triviaTimer = 30000
+    //   document.getElementById('startButton').innerHTML = triviaTimer
+    // },
+    // 1000)
+
+
+
     const renderGame = function () {
       //remove start button
       document.getElementById('startButton').innerHTML = ''
@@ -77,6 +85,16 @@
       `
       document.getElementById('doneButton').append(putDone)
 
+      let triviaTimer = 30
+      document.getElementById('startButton').innerHTML = `Time Remaining: ${triviaTimer}`
+      const x = setInterval(function () {
+        triviaTimer--
+        document.getElementById('startButton').innerHTML = `Time Remaining: ${triviaTimer}`
+        if (triviaTimer <=0){
+          clearInterval(x)
+        }
+      },
+        1000)
     }
 
     const finishGame = function () {
